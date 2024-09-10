@@ -1,0 +1,21 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: ./tmp/positions.yaml
+
+clients:
+  # - url: https://363390:<Your Grafana.com API Token>@logs-prod-011.grafana.net/loki/api/v1/push
+  - url: https://991096:glc_eyJvIjoiMTIxNzcyNiIsIm4iOiJsb2tpLWFjY2Vzcy1wcm9tdGFpbCIsImsiOiI2NTY4ODJJNW1ZZDJjaThzeHN4VWtpMmMiLCJtIjp7InIiOiJ1cyJ9fQ==@logs-prod-006.grafana.net/loki/api/v1/push
+
+scrape_configs:
+  - job_name: app_logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: my-devops-practice
+          host: my-labtop
+          __path__: ./tmp/*.log
+          # __path__: /var/log/*.log  # config for container
